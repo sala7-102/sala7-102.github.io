@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salah Mohamed Ahmed — IT &amp; Data</title>
+<meta name="description" content="Portfolio of Salah Mohamed Ahmed — IT student, Python/SQL/C++, networking (CCNA).">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0e1117;
+    --bg-raised: #161b24;
+    --bg-raised-2: #1c222d;
+    --line: #262d3a;
+    --text: #e7e9ee;
+    --text-muted: #8d94a3;
+    --amber: #e8a33d;
+    --teal: #4fc7b0;
+    --font-display: 'JetBrains Mono', ui-monospace, monospace;
+    --font-body: 'Inter', system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--font-body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; }
+  ::selection{ background:var(--amber); color:#0e1117; }
+
+  .wrap{ max-width: 920px; margin:0 auto; padding: 0 28px; }
+
+  /* NAV */
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(14,17,23,0.85);
+    backdrop-filter: blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 16px 0;
+  }
+  .nav-brand{
+    font-family:var(--font-display); font-weight:600; font-size:15px;
+    color:var(--text); text-decoration:none; letter-spacing:0.02em;
+  }
+  .nav-brand span{ color:var(--amber); }
+  .nav-links{ display:flex; gap: 28px; list-style:none; margin:0; padding:0; }
+  .nav-links a{
+    text-decoration:none; color:var(--text-muted); font-size:14px; font-weight:500;
+    transition: color .15s ease;
+  }
+  .nav-links a:hover{ color:var(--text); }
+  .nav-toggle{ display:none; background:none; border:1px solid var(--line); color:var(--text); border-radius:6px; padding:6px 10px; font-family:var(--font-display); }
+
+  /* HERO */
+  .hero{ padding: 96px 0 72px; border-bottom:1px solid var(--line); }
+  .hero-tag{
+    font-family:var(--font-display); color:var(--teal); font-size:13px;
+    margin:0 0 18px; display:flex; align-items:center; gap:10px;
+  }
+  .hero-tag::before{
+    content:''; width:8px; height:8px; border-radius:50%; background:var(--teal);
+    box-shadow:0 0 0 4px rgba(79,199,176,0.15);
+  }
+  .hero h1{
+    font-family:var(--font-display); font-size: clamp(34px, 5.5vw, 56px);
+    line-height:1.12; margin:0 0 20px; font-weight:700; letter-spacing:-0.01em;
+    max-width: 14ch;
+  }
+  .hero p.lead{
+    color:var(--text-muted); font-size:18px; max-width: 58ch; margin:0 0 32px;
+  }
+  .hero-actions{ display:flex; flex-wrap:wrap; gap:14px; }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding: 12px 20px; border-radius:8px; font-size:14px; font-weight:600;
+    text-decoration:none; border:1px solid transparent; cursor:pointer;
+    font-family:var(--font-body); transition: transform .15s ease, background .15s ease, border-color .15s ease;
+  }
+  .btn:hover{ transform: translateY(-1px); }
+  .btn-primary{ background:var(--amber); color:#1a1206; }
+  .btn-primary:hover{ background:#f0ad4e; }
+  .btn-outline{ background:transparent; color:var(--text); border-color:var(--line); }
+  .btn-outline:hover{ border-color:var(--teal); color:var(--teal); }
+
+  /* SECTION shared */
+  section{ padding: 72px 0; border-bottom:1px solid var(--line); }
+  section:last-of-type{ border-bottom:none; }
+  .section-head{ margin-bottom: 36px; }
+  .section-head .kicker{
+    font-family:var(--font-display); font-size:12px; color:var(--amber);
+    margin:0 0 8px; letter-spacing:0.04em;
+  }
+  .section-head h2{ font-size: 28px; margin:0; font-weight:700; }
+
+  /* ABOUT */
+  .about-grid{ display:grid; grid-template-columns: 1.4fr 1fr; gap:48px; align-items:start; }
+  .about-grid p{ color:var(--text-muted); font-size:16px; margin:0 0 14px; max-width:62ch; }
+  .facts{ list-style:none; margin:0; padding:0; display:grid; gap:14px; }
+  .facts li{
+    display:flex; justify-content:space-between; gap:16px;
+    padding-bottom:14px; border-bottom:1px solid var(--line);
+    font-size:14px;
+  }
+  .facts li:last-child{ border-bottom:none; padding-bottom:0; }
+  .facts .k{ color:var(--text-muted); }
+  .facts .v{ font-family:var(--font-display); color:var(--text); text-align:right; }
+
+  /* SKILLS */
+  .skills-grid{
+    display:grid; grid-template-columns: repeat(auto-fill, minmax(150px,1fr)); gap:2px;
+    border:1px solid var(--line); border-radius:10px; overflow:hidden;
+  }
+  .skill{
+    background:var(--bg-raised); padding:18px 16px;
+    display:flex; flex-direction:column; gap:6px;
+  }
+  .skill .name{ font-family:var(--font-display); font-size:14px; font-weight:600; }
+  .skill .tag{ font-size:12px; color:var(--text-muted); }
+
+  /* PROJECTS */
+  .project{
+    display:grid; grid-template-columns: 200px 1fr; gap: 28px;
+    padding: 28px 0; border-bottom:1px solid var(--line);
+  }
+  .project:last-child{ border-bottom:none; }
+  .project .p-meta{ font-family:var(--font-display); font-size:12px; color:var(--text-muted); }
+  .project h3{ margin:6px 0 10px; font-size:20px; }
+  .project p{ color:var(--text-muted); margin:0 0 14px; max-width:60ch; }
+  .stack{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px; }
+  .stack span{
+    font-family:var(--font-display); font-size:11px; color:var(--teal);
+    border:1px solid rgba(79,199,176,0.35); padding:3px 8px; border-radius:5px;
+    background:rgba(79,199,176,0.06);
+  }
+  .project a.link{
+    font-size:14px; font-weight:600; color:var(--amber); text-decoration:none;
+  }
+  .project a.link:hover{ text-decoration:underline; }
+
+  /* CONTACT */
+  .contact-grid{ display:grid; grid-template-columns: 1fr 1fr; gap:48px; align-items:start; }
+  .contact-links{ display:grid; gap:12px; margin-top:24px; }
+  .contact-links a{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 16px; border:1px solid var(--line); border-radius:8px;
+    text-decoration:none; font-size:14px; font-weight:600; color:var(--text);
+    transition: border-color .15s ease, background .15s ease;
+  }
+  .contact-links a:hover{ border-color:var(--amber); background:var(--bg-raised); }
+  .contact-links a .arrow{ color:var(--text-muted); }
+
+  form{ display:grid; gap:14px; }
+  label{ font-size:13px; color:var(--text-muted); display:block; margin-bottom:6px; }
+  input, textarea{
+    width:100%; background:var(--bg-raised); border:1px solid var(--line); color:var(--text);
+    padding:12px 14px; border-radius:8px; font-family:var(--font-body); font-size:14px;
+  }
+  input:focus, textarea:focus{ outline:2px solid var(--teal); outline-offset:1px; border-color:var(--teal); }
+  textarea{ min-height:110px; resize:vertical; }
+
+  footer{ padding: 40px 0 60px; text-align:center; }
+  footer p{ color:var(--text-muted); font-size:13px; margin:0; }
+
+  @media (max-width: 720px){
+    .nav-links{ display:none; }
+    .about-grid, .contact-grid{ grid-template-columns: 1fr; }
+    .project{ grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .btn{ transition:none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="nav-brand">salah<span>.</span>mohamed</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero wrap" style="border-bottom:1px solid var(--line);">
+    <p class="hero-tag">Available for internships &amp; junior roles</p>
+    <h1>Salah Mohamed Ahmed</h1>
+    <p class="lead">IT student at the Korean Egyptian College, building with Python, SQL and C++, with hands-on networking knowledge from CCNA.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="resume.pdf" download>Download CV</a>
+      <a class="btn btn-outline" href="https://www.linkedin.com/in/salah-mohamed-0b2866338/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn btn-outline" href="https://github.com/sala7-102" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </section>
+
+  <section id="about" class="wrap">
+    <div class="section-head">
+      <p class="kicker">// about</p>
+      <h2>About me</h2>
+    </div>
+    <div class="about-grid">
+      <div>
+        <p>I'm an IT student at the Korean Egyptian College, interested in data, software, and networks. I like building things end-to-end — from working out the logic in C++ to shipping a full website with a working back end.</p>
+        <p>Alongside programming, I've built a foundation in networking through CCNA, and I'm continuing to sharpen my skills in Python and SQL for data-focused work.</p>
+      </div>
+      <ul class="facts">
+        <li><span class="k">Based in</span><span class="v">Egypt</span></li>
+        <li><span class="k">Studying</span><span class="v">IT, KEC</span></li>
+        <li><span class="k">Arabic</span><span class="v">Native</span></li>
+        <li><span class="k">English</span><span class="v">B2</span></li>
+        <li><span class="k">Email</span><span class="v">dwarsalah3@gmail.com</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="skills" class="wrap">
+    <div class="section-head">
+      <p class="kicker">// skills</p>
+      <h2>What I work with</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill"><span class="name">Python</span><span class="tag">Scripting &amp; data</span></div>
+      <div class="skill"><span class="name">SQL</span><span class="tag">Databases</span></div>
+      <div class="skill"><span class="name">C++</span><span class="tag">Data structures</span></div>
+      <div class="skill"><span class="name">CCNA</span><span class="tag">Networking</span></div>
+      <div class="skill"><span class="name">HTML / CSS</span><span class="tag">Front end</span></div>
+      <div class="skill"><span class="name">JavaScript</span><span class="tag">Front end</span></div>
+      <div class="skill"><span class="name">PHP</span><span class="tag">Back end</span></div>
+      <div class="skill"><span class="name">Git / GitHub</span><span class="tag">Version control</span></div>
+    </div>
+  </section>
+
+  <section id="projects" class="wrap">
+    <div class="section-head">
+      <p class="kicker">// projects</p>
+      <h2>Selected work</h2>
+    </div>
+
+    <div class="project">
+      <div class="p-meta">2024</div>
+      <div>
+        <h3>Smart City Transportation System</h3>
+        <p>A simulation of transportation logic for a smart city, built to practice core data structures and algorithmic thinking in C++.</p>
+        <div class="stack"><span>C++</span><span>Data Structures</span><span>Algorithms</span></div>
+        <a class="link" href="https://github.com/sala7-102" target="_blank" rel="noopener">View on GitHub →</a>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="p-meta">2024</div>
+      <div>
+        <h3>Bakery Website</h3>
+        <p>A full website for a bakery, covering the front end and a PHP-powered back end.</p>
+        <div class="stack"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>PHP</span></div>
+        <a class="link" href="https://github.com/sala7-102" target="_blank" rel="noopener">View on GitHub →</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="wrap">
+    <div class="section-head">
+      <p class="kicker">// contact</p>
+      <h2>Get in touch</h2>
+    </div>
+    <div class="contact-grid">
+      <div>
+        <p style="color:var(--text-muted); max-width:46ch;">Open to internships, junior IT/data roles, and freelance work. The fastest way to reach me is email or LinkedIn.</p>
+        <div class="contact-links">
+          <a href="mailto:dwarsalah3@gmail.com">Email <span class="arrow">↗</span></a>
+          <a href="https://www.linkedin.com/in/salah-mohamed-0b2866338/" target="_blank" rel="noopener">LinkedIn <span class="arrow">↗</span></a>
+          <a href="https://github.com/sala7-102" target="_blank" rel="noopener">GitHub <span class="arrow">↗</span></a>
+        </div>
+      </div>
+      <form action="https://formspree.io/f/your-form-id" method="POST">
+        <div>
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" required>
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input id="email" name="_replyto" type="email" required>
+        </div>
+        <div>
+          <label for="message">Message</label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+        <button class="btn btn-primary" type="submit">Send message</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <p>© 2026 Salah Mohamed Ahmed. Built and hosted on GitHub Pages.</p>
+</footer>
+
+</body>
+</html>
